@@ -27,7 +27,7 @@ public class Amount {
 
     }
 
-    //    @ManyToOne
+    //    @ManyToOne vugybh
 //    Category category;
 
     public int getAmountId() {

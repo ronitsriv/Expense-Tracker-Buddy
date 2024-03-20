@@ -1,12 +1,9 @@
-package com.example.ExpenseManager.demo.category;
+package com.example.ExpenseManager.demo.categoryEntry;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Category {
+class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;

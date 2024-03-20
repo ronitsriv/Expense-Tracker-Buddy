@@ -1,6 +1,8 @@
 package com.example.ExpenseManager.demo.amountEntry;
 
 import jakarta.persistence.*;
+import com.example.ExpenseManager.demo.categoryEntry.Category;
+
 
 import java.util.Date;
 
@@ -13,22 +15,25 @@ public class Amount {
     int amount;
     Date entryDate;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryId") // Name of the foreign key column in Amount table
+    public Category category; // This should be of type Category
+
     public Amount(int amountId, String reason, int amount, Date entryDate
-                  //, Category category
+                  , Category category
                   ) {
         this.amountId = amountId;
         this.reason = reason;
         this.amount = amount;
         this.entryDate = entryDate;
-//        this.category = category;
+        this.category = category;
     }
 
     public Amount() {
 
     }
 
-    //    @ManyToOne For later use
-//    Category category;
+
 
     public int getAmountId() {
         return amountId;
@@ -62,13 +67,13 @@ public class Amount {
         this.entryDate = entryDate;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
+    public Category getCategory() {
+        return category;
+    }
 
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 
 }

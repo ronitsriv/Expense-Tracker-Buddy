@@ -1,9 +1,7 @@
-package com.example.ExpenseManager.demo.reminder;
+package com.example.ExpenseManager.demo.ReminderEntry;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
@@ -19,10 +17,13 @@ public class Reminder {
         // Default constructor required by JPA
     }
 
-    public Reminder(String title, String description, Date reminderDate) {
+    public Reminder(String title, String description, Date reminderDate
+        //        , Category category
+    ) {
         this.title = title;
         this.description = description;
         this.reminderDate = reminderDate;
+        //this.category = category;
     }
 
     public int getReminderId() {

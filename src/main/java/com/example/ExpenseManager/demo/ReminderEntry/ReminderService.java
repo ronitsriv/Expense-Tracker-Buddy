@@ -1,5 +1,6 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
+import com.example.ExpenseManager.demo.categoryEntry.Category;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,10 +17,15 @@ public class ReminderService {
 
     public ReminderService() {
         Date currentDate = new Date();
+
+        // Create a dummy category
+        Category dummyCategory1 = new Category("Leisure");
+        Category dummyCategory2 = new Category("Necessary");
+
         // Initialize the list of reminders statically
-        reminders.add(new Reminder(++reminderCount, "john", "Learn AWS 1", "afblhdk", currentDate));
-        reminders.add(new Reminder(++reminderCount, "john", "Learn Spring 1", "afblhdk", currentDate));
-        reminders.add(new Reminder(++reminderCount, "john", "Learn full stack 1", "afblhdk", currentDate));
+        reminders.add(new Reminder(++reminderCount, "john", 200, "Movie Ticket", currentDate, dummyCategory1));
+        reminders.add(new Reminder(++reminderCount, "john", 153, "Ice cream", currentDate, dummyCategory1));
+        reminders.add(new Reminder(++reminderCount, "john", 21, "Stationery", currentDate, dummyCategory2));
     }
 
     public List<Reminder> findByUsername(String username){

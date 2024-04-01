@@ -1,5 +1,6 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
+import com.example.ExpenseManager.demo.categoryEntry.Category;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -9,21 +10,26 @@ public class Reminder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reminderId;
-    private String title;
-    private String description;
+    private int amount;
+    private String reason;
+
+    @ManyToOne
+    private Category category; // Many-to-One relationship with Category
+
     private Date reminderDate;
-    private String username; // Add username field
+    private String username;
 
     public Reminder() {
         // Default constructor required by JPA
     }
 
-    public Reminder(int reminderId, String username, String title, String description, Date reminderDate) {
+    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate, Category category) {
         this.reminderId = reminderId;
-        this.username = username; // Set username
-        this.title = title;
-        this.description = description;
+        this.username = username;
+        this.amount = amount;
+        this.reason = reason;
         this.reminderDate = reminderDate;
+        this.category = category; // Set the category
     }
 
     public int getReminderId() {
@@ -34,20 +40,28 @@ public class Reminder {
         this.reminderId = reminderId;
     }
 
-    public String getTitle() {
-        return title;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
-    public String getDescription() {
-        return description;
+    public String getReason() {
+        return reason;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Date getReminderDate() {

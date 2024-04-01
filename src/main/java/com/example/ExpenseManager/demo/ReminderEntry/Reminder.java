@@ -12,18 +12,18 @@ public class Reminder {
     private String title;
     private String description;
     private Date reminderDate;
+    private String username; // Add username field
 
     public Reminder() {
         // Default constructor required by JPA
     }
 
-    public Reminder(String title, String description, Date reminderDate
-        //        , Category category
-    ) {
+    public Reminder(int reminderId, String username, String title, String description, Date reminderDate) {
+        this.reminderId = reminderId;
+        this.username = username; // Set username
         this.title = title;
         this.description = description;
         this.reminderDate = reminderDate;
-        //this.category = category;
     }
 
     public int getReminderId() {
@@ -56,5 +56,13 @@ public class Reminder {
 
     public void setReminderDate(Date reminderDate) {
         this.reminderDate = reminderDate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

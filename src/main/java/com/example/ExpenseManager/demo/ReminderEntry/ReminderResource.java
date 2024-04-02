@@ -1,10 +1,8 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,15 @@ public class ReminderResource {
     @GetMapping("/{username}/reminders")
     public List<Reminder> getRemindersByUsername(@PathVariable String username) {
         return reminderService.findByUsername(username);
+    }
+    @GetMapping("/{username}/reminders/{reminderId}")
+    public Reminder getReminderById(@PathVariable String username, @PathVariable int reminderId){
+        return reminderService.findById(reminderId);
+    }
+
+    @DeleteMapping("/{username}/reminders/{reminderId}")
+    public ResponseEntity<Void> deleteReminderById(@PathVariable String username, @PathVariable int reminderId){
+        reminderService.deleteReminder(reminderId);
+        return ResponseEntity.noContent().build();
     }
 }

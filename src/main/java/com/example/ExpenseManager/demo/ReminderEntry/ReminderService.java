@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+//import jakarta.validation.Valid;
 
 @Service
 public class ReminderService {
@@ -38,4 +39,19 @@ public class ReminderService {
                 .collect(Collectors.toList());
     }
 
+    public Reminder findById(int id) {
+        Predicate<? super Reminder> predicate = todo -> todo.getReminderId() == id;
+        Reminder reminder = reminders.stream().filter(predicate).findFirst().get();
+        return reminder;
+    }
+
+    public void deleteReminder(int id){
+        Predicate<? super Reminder> predicate = reminder -> reminder.getReminderId()==id;
+        reminders.removeIf(predicate);
+    }
+
+//    public void updateReminder(Reminder reminder){
+//        deleteReminder(reminder);
+//
+//    }
 }

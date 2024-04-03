@@ -20,9 +20,10 @@ public class CategoryWiseBudget {
     public CategoryWiseBudget() {
     }
 
-    public CategoryWiseBudget(int budget, Category category) {
+    public CategoryWiseBudget(int budget,string username, Category category) {
         this.budget = budget;
         this.category = category;
+        this.username = username;
     }
 
     public int getId() {
@@ -47,5 +48,11 @@ public class CategoryWiseBudget {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

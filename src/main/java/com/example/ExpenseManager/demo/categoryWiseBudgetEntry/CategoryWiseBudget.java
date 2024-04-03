@@ -15,6 +15,8 @@ public class CategoryWiseBudget {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    private string username;
+
     public CategoryWiseBudget() {
     }
 

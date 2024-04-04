@@ -24,9 +24,9 @@ public class ReminderService {
         Category dummyCategory2 = new Category("Necessary");
 
         // Initialize the list of reminders statically
-        reminders.add(new Reminder(++reminderCount, "john", 200, "Movie Ticket", currentDate, dummyCategory1));
-        reminders.add(new Reminder(++reminderCount, "john", 153, "Ice cream", currentDate, dummyCategory1));
-        reminders.add(new Reminder(++reminderCount, "john", 21, "Stationery", currentDate, dummyCategory2));
+        reminders.add(new Reminder(++reminderCount, "john", 200, "Movie Ticket", currentDate, dummyCategory1, true));
+        reminders.add(new Reminder(++reminderCount, "john", 153, "Ice cream", currentDate, dummyCategory1, false));
+        reminders.add(new Reminder(++reminderCount, "john", 21, "Stationery", currentDate, dummyCategory2, true));
     }
 
     public List<Reminder> findByUsername(String username){
@@ -45,13 +45,18 @@ public class ReminderService {
         return reminder;
     }
 
+    public void addReminder(String username, int amount, String reason, Date reminderDate, Category category, boolean done){
+        Reminder reminder = new Reminder(++reminderCount, username, amount, reason, reminderDate, category, done);
+        reminders.add(reminder);
+    }
+
     public void deleteReminder(int id){
         Predicate<? super Reminder> predicate = reminder -> reminder.getReminderId()==id;
         reminders.removeIf(predicate);
     }
 
-//    public void updateReminder(Reminder reminder){
-//        deleteReminder(reminder);
-//
-//    }
+    public void updateReminder(Reminder reminder){
+        deleteReminder(reminder.getReminderId());
+        reminders.add(reminder);
+    }
 }

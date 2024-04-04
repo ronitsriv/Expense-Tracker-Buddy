@@ -18,18 +18,28 @@ public class Reminder {
 
     private Date reminderDate;
     private String username;
+    private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
     public Reminder() {
         // Default constructor required by JPA
     }
 
-    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate, Category category) {
+    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate, Category category, boolean done) {
         this.reminderId = reminderId;
         this.username = username;
         this.amount = amount;
         this.reason = reason;
         this.reminderDate = reminderDate;
         this.category = category; // Set the category
+        this.done = done;
     }
 
     public int getReminderId() {

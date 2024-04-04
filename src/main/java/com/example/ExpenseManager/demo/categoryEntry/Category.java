@@ -10,11 +10,17 @@ public class Category {
 
     private String categoryName;
 
+    private String username;
+
     public Category() {
     }
 
-    public Category(String categoryName) {
+    
+
+    public Category(String categoryName, int categoryId, String username) {
         this.categoryName = categoryName;
+        this.categoryId = categoryId;
+        this.username = username;
     }
 
     public int getCategoryId() {
@@ -31,5 +37,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+     public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

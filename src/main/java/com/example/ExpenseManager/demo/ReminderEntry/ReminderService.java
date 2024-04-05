@@ -20,8 +20,8 @@ public class ReminderService {
         Date currentDate = new Date();
 
         // Create a dummy category
-        Category dummyCategory1 = new Category("Leisure");
-        Category dummyCategory2 = new Category("Necessary");
+        Category dummyCategory1 = new Category("Leisure", 1, "john");
+        Category dummyCategory2 = new Category("Necessary", 2, "john");
 
         // Initialize the list of reminders statically
         reminders.add(new Reminder(++reminderCount, "john", 200, "Movie Ticket", currentDate, dummyCategory1, true));

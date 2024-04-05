@@ -22,7 +22,7 @@ public class ReminderController {
     }
     @RequestMapping("reminders")
     //   \src\main\resources\META-INF\resources\WEB-INF\jsp\sayHello.jsp
-    public String listReminders(ModelMap model){
+    public String listAllReminders(ModelMap model){
         String username = getLoggedInUsername(model);
         List<Reminder> reminders = reminderService.findByUsername(username);
         model.addAttribute("reminders", reminders);

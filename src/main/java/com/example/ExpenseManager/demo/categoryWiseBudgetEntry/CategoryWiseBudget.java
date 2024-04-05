@@ -15,12 +15,12 @@ public class CategoryWiseBudget {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private string username;
+    private String username;
 
     public CategoryWiseBudget() {
     }
 
-    public CategoryWiseBudget(int budget,string username, Category category) {
+    public CategoryWiseBudget(int budget,String username, Category category) {
         this.budget = budget;
         this.category = category;
         this.username = username;

@@ -1,6 +1,5 @@
 package com.example.ExpenseManager.demo.categoryWiseBudgetEntry;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

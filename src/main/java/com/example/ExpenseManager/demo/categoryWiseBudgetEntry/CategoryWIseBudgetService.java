@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CategoryWiseBudgetService {
-    private List<CategoryWiseBudget> budgets = new ArrayList<>();
+    private final List<CategoryWiseBudget> budgets = new ArrayList<>();
     private int budgetCount = 0;
 
     public CategoryWiseBudgetService() {

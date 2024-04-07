@@ -29,34 +29,32 @@ public class ReminderController {
         return "listReminders";
     }
 
+    @RequestMapping(value="add-todo", method = RequestMethod.POST)
+    public String addNewTodo(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+        if(result.hasErrors()){
+            return "newReminder";
+        }
+        String username = (String)model.get("name");
+        reminderService.addReminder(username, reminder.getAmount(), reminder.getReason(),
+                reminder.getReminderDate(), reminder.getCategory(), false);
+        return "redirect:reminders";
+    }
+
     @RequestMapping("welcome")
     //   \src\main\resources\META-INF\resources\WEB-INF\jsp\sayHello.jsp
     public String welcome(){
         return "welcome";
     }
 
-//    @RequestMapping("list-todos")
-//    public String listAllTodos(ModelMap model){
-//        String username = getLoggedInUsername(model);
-//        List<Reminder> toDos = todoService.findByUsername(username);
-//        model.addAttribute("todos", todos);
-//
-//        return "listTodos";
-//    }
-
     private static String getLoggedInUsername(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
 
-//    @GetMapping("/{username}/reminders/{reminderId}")
-//    public Reminder getReminderById(@PathVariable String username, @PathVariable int reminderId){
-//        return reminderService.findById(reminderId);
-//    }
-//
-//    @DeleteMapping("/{username}/reminders/{reminderId}")
-//    public ResponseEntity<Void> deleteReminderById(@PathVariable String username, @PathVariable int reminderId){
-//        reminderService.deleteReminder(reminderId);
-//        return ResponseEntity.noContent().build();
-//    }
+    @RequestMapping("delete-reminder")
+    public String deleteReminder(@RequestParam int id){
+        reminderService.deleteReminder(id);
+        return "redirect:reminders";
+    }
+
 }

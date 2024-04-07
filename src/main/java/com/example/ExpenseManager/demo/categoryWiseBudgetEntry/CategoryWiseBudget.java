@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class CategoryWiseBudget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int catWiseid;
 
     private int budget;
 
@@ -20,18 +20,20 @@ public class CategoryWiseBudget {
     public CategoryWiseBudget() {
     }
 
-    public CategoryWiseBudget(int budget,String username, Category category) {
+    public CategoryWiseBudget(int catWiseid, int budget,String username, Category category) {
+        this.catWiseid=catWiseid;
         this.budget = budget;
         this.category = category;
         this.username = username;
     }
 
-    public int getId() {
-        return id;
+
+    public int getCatWiseid() {
+        return catWiseid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCatWiseid(int catWiseid) {
+        this.catWiseid = catWiseid;
     }
 
     public int getBudget() {

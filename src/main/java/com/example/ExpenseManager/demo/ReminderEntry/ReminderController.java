@@ -57,4 +57,22 @@ public class ReminderController {
         return "redirect:reminders";
     }
 
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET)
+    public String showUpdateTodo(@RequestParam int id, ModelMap model){
+        Reminder reminder = reminderService.findById(id);
+        model.addAttribute("newReminder", reminder);
+        return "newReminder";
+    }
+
+    @RequestMapping(value="update-todo", method = RequestMethod.POST)
+    public String updateTodo(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+        if(result.hasErrors()){
+            return "newReminder";
+        }
+        String username = (String)model.get("name");
+        reminder.setUsername(username);
+        reminderService.updateReminder(reminder);
+        return "redirect:reminders";
+    }
+
 }

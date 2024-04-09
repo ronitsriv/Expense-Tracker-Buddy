@@ -2,8 +2,8 @@
 <%@ include file="common/navigation.jspf" %>
 
 <div class="container">
-    <h1>Enter todo details</h1>
-    <form:form method="post" modelAttribute="todo">
+    <h1>Enter reminder details</h1>
+    <form:form method="post" modelAttribute="reminder">
         <fieldset class="mb-3">
             <form:label path="description">Description</form:label>
             <form:input type="text" path="description" required="required"/>

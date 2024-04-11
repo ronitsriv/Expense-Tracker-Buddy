@@ -12,7 +12,7 @@ public class CategoryWiseBudget {
     private int budget;
 
     @OneToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "categoryId")
     private Category category;
 
     private String username;

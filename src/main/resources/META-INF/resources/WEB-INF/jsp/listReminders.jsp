@@ -1,6 +1,6 @@
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>--%>
-<%--<%@ include file="common/header.jspf" %>--%>
-<%--<%@ include file="common/navigation.jspf" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
 <div class="container">
 
@@ -27,5 +27,5 @@
         </c:forEach>
         </tbody>
     </table>
-<%--    <a href="add-todo" class="btn btn-success">Add ToDo</a>--%>
-<%--    <%@ include file="common/footer.jspf" %>--%>
+    <a href="add-todo" class="btn btn-success">Add ToDo</a>
+    <%@ include file="common/footer.jspf" %>

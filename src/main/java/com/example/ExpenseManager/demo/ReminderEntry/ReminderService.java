@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class ReminderService {
-    private List<Reminder> reminders = new ArrayList<>();
+    public List<Reminder> reminders = new ArrayList<>();
     private int reminderCount = 0;
 
     public ReminderService() {
         Date currentDate = new Date();
 
         // Create a dummy category
-        Category dummyCategory1 = new Category("Leisure", 1, "john");
-        Category dummyCategory2 = new Category("Necessary", 2, "john");
+        Category dummyCategory1 = new Category("Leisure", "john");
+        Category dummyCategory2 = new Category("Necessary", "john");
 
         // Initialize the list of reminders statically
         reminders.add(new Reminder(++reminderCount, "john", 200, "Movie Ticket", currentDate, dummyCategory1, true));

@@ -13,7 +13,8 @@ public class Reminder {
     private int amount;
     private String reason;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoryId")
     private Category category; // Many-to-One relationship with Category
 
     private Date reminderDate;
@@ -32,7 +33,11 @@ public class Reminder {
         // Default constructor required by JPA
     }
 
-    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate, Category category, boolean done) {
+
+
+    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate,
+                    Category category
+            , boolean done) {
         this.reminderId = reminderId;
         this.username = username;
         this.amount = amount;
@@ -40,6 +45,14 @@ public class Reminder {
         this.reminderDate = reminderDate;
         this.category = category; // Set the category
         this.done = done;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getReminderId() {
@@ -66,13 +79,13 @@ public class Reminder {
         this.reason = reason;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 
     public Date getReminderDate() {
         return reminderDate;

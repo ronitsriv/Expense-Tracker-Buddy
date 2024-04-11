@@ -13,11 +13,11 @@ public class CategoryWiseBudgetService {
     private final List<CategoryWiseBudget> budgets = new ArrayList<>();
     private int budgetCount = 0;
 
-    public CategoryWiseBudgetService() {
-        // Initialize the list of budgets statically
-        budgets.add(new CategoryWiseBudget(++budgetCount, 500, "john", new Category("Leisure",1, "John")));
-        budgets.add(new CategoryWiseBudget(++budgetCount, 300, "john", new Category("Necessary",2, "John")));
-    }
+//    public CategoryWiseBudgetService() {
+//        // Initialize the list of budgets statically
+//        budgets.add(new CategoryWiseBudget(++budgetCount, 500, "john", new Category("Leisure",1, "John")));
+//        budgets.add(new CategoryWiseBudget(++budgetCount, 300, "john", new Category("Necessary",2, "John")));
+//    }
 
     public List<CategoryWiseBudget> findByUsername(String username){
         Predicate<CategoryWiseBudget> predicate = budget -> {

@@ -34,6 +34,16 @@ public class ReminderController {
         return "listReminders";
     }
 
+    @GetMapping("insights")
+    public String insights(ModelMap model) {
+        String username = getLoggedInUsername(model);
+        int maxExpense = reminderService.findMaxExpenseByUsername("JohnDoe");
+        int minExpense = reminderService.findMinExpenseByUsername("JohnDoe");
+        model.addAttribute("maxExpense", maxExpense);
+        model.addAttribute("minExpense", minExpense);
+        return "insightsPage";
+    }
+
     // Mapping to add a new reminder
     @RequestMapping(value="add-reminder", method = RequestMethod.POST)
     public String addNewReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {

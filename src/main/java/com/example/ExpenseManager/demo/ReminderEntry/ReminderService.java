@@ -1,6 +1,7 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
 import com.example.ExpenseManager.demo.categoryEntry.Category;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //hello
 import java.time.LocalDate;
@@ -16,7 +17,11 @@ public class ReminderService {
     public List<Reminder> reminders = new ArrayList<>();
     private int reminderCount = 0;
 
-    public ReminderService() {
+    private final ReminderRepositoryQueries reminderRepositoryQueries;
+
+    @Autowired
+    public ReminderService(ReminderRepositoryQueries reminderRepositoryQueries) {
+        this.reminderRepositoryQueries = reminderRepositoryQueries;
         LocalDate currentDate = LocalDate.now();
 
         // Create a dummy category
@@ -58,5 +63,15 @@ public class ReminderService {
     public void updateReminder(Reminder reminder){
         deleteReminder(reminder.getReminderId());
         reminders.add(reminder);
+    }
+
+    public int findMaxExpenseByUsername(String username) {
+        Integer maxExpense = reminderRepositoryQueries.findMaxExpenseByUsername(username);
+        return maxExpense != null ? maxExpense : 0;
+    }
+
+    public int findMinExpenseByUsername(String username) {
+        Integer minExpense = reminderRepositoryQueries.findMinExpenseByUsername(username);
+        return minExpense != null ? minExpense : 0;
     }
 }

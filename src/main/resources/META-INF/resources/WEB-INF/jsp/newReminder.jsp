@@ -1,30 +1,25 @@
-<%@ include file="common/header.jspf" %>
-<%@ include file="common/navigation.jspf" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="container">
     <h1>Enter reminder details</h1>
     <form:form method="post" modelAttribute="reminder">
         <fieldset class="mb-3">
-            <form:label path="description">Description</form:label>
-            <form:input type="text" path="description" required="required"/>
-            <form:errors type="text" path="description" cssClass="text-warning"/>
+            <form:label path="reason">Reason</form:label>
+            <form:input type="text" path="reason" required="required" class="form-control"/>
+            <form:errors path="reason" cssClass="text-warning"/>
         </fieldset>
 
         <fieldset class="mb-3">
-            <form:label path="targetDate">Target Date</form:label>
-            <form:input type="text" path="targetDate" required="required"/>
-            <form:errors type="text" path="targetDate" cssClass="text-warning"/>
+            <form:label path="reminderDate">Target Date</form:label>
+            <form:input type="text" path="reminderDate" required="required" placeholder="yyyy-MM-dd" class="form-control" pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format yyyy-MM-dd"/>
+            <form:errors path="reminderDate" cssClass="text-warning"/>
         </fieldset>
 
+        <fieldset class="mb-3">
+            <form:label path="amount">Amount</form:label>
+            <form:input type="text" path="amount" required="required" class="form-control"/>
+            <form:errors path="amount" cssClass="text-warning"/>
+        </fieldset>
 
-        <form:input type="hidden" path="id"/>
-        <form:input type="hidden" path="done"/>
-        <input type="submit" class="btn btn-success"/>
+        <input type="submit" class="btn btn-success" value="Add Reminder"/>
     </form:form>
 </div>
-<%@ include file="common/footer.jspf" %>
-<script type="text/javascript">
-    $('#targetDate').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-</script>

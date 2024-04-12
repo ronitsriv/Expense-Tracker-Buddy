@@ -17,7 +17,7 @@ public class ReminderService {
     private int reminderCount = 0;
 
     public ReminderService() {
-        Date currentDate = new Date();
+        LocalDate currentDate = LocalDate.now();
 
         // Create a dummy category
         Category dummyCategory1 = new Category("Leisure", "john");
@@ -45,7 +45,7 @@ public class ReminderService {
         return reminder;
     }
 
-    public void addReminder(String username, int amount, String reason, Date reminderDate, Category category, boolean done){
+    public void addReminder(String username, int amount, String reason, LocalDate reminderDate, Category category, boolean done){
         Reminder reminder = new Reminder(++reminderCount, username, amount, reason, reminderDate, category, done);
         reminders.add(reminder);
     }

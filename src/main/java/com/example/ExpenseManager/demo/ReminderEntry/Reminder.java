@@ -2,7 +2,9 @@ package com.example.ExpenseManager.demo.ReminderEntry;
 
 import com.example.ExpenseManager.demo.categoryEntry.Category;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,8 +18,8 @@ public class Reminder {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "categoryId")
     private Category category; // Many-to-One relationship with Category
-
-    private Date reminderDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate reminderDate;
     private String username;
     private boolean done;
 
@@ -35,7 +37,7 @@ public class Reminder {
 
 
 
-    public Reminder(int reminderId, String username, int amount, String reason, Date reminderDate,
+    public Reminder(int reminderId, String username, int amount, String reason, LocalDate reminderDate,
                     Category category
             , boolean done) {
         this.reminderId = reminderId;
@@ -87,11 +89,11 @@ public class Reminder {
 //        this.category = category;
 //    }
 
-    public Date getReminderDate() {
+    public LocalDate getReminderDate() {
         return reminderDate;
     }
 
-    public void setReminderDate(Date reminderDate) {
+    public void setReminderDate(LocalDate reminderDate) {
         this.reminderDate = reminderDate;
     }
 

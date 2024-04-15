@@ -1,6 +1,7 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
 import com.example.ExpenseManager.demo.categoryEntry.Category;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.validation.Valid;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -20,19 +19,33 @@ public class ReminderController {
 
     private final ReminderService reminderService;
 
+    private final ReminderRepositoryQueries reminderRepository;
+
     @Autowired
-    public ReminderController(ReminderService reminderService) {
+    public ReminderController(ReminderService reminderService, ReminderRepositoryQueries reminderRepository) {
         this.reminderService = reminderService;
+        this.reminderRepository = reminderRepository;
     }
 
+
     // Mapping to display all reminders
-    @RequestMapping("reminders")
+//    @RequestMapping("reminders")
+//    public String listAllReminders(ModelMap model) {
+//        String username = getLoggedInUsername(model);
+//        List<Reminder> reminders = reminderService.findByUsername(username);
+//        model.addAttribute("reminders", reminders);
+//        return "listReminders";
+//    }
+
+    // Mapping to display all reminders
+    @GetMapping("reminders")
     public String listAllReminders(ModelMap model) {
-        String username = getLoggedInUsername(model);
+        String username = "John Doe";
         List<Reminder> reminders = reminderService.findByUsername(username);
-        model.addAttribute("reminders", reminders);
+        model.addAttribute("row", reminders);
         return "listReminders";
     }
+
 
     @GetMapping("insights")
     public String insights(ModelMap model) {
@@ -45,14 +58,13 @@ public class ReminderController {
     }
 
     // Mapping to add a new reminder
+    // In your controller
     @RequestMapping(value="add-reminder", method = RequestMethod.POST)
     public String addNewReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
         if (result.hasErrors()) {
             return "newReminder";
         }
-        String username = (String) model.get("name");
-        reminderService.addReminder(username, reminder.getAmount(), reminder.getReason(),
-                reminder.getReminderDate(), reminder.getCategory(), false);
+        reminderService.addReminder(reminder.getAmount(), reminder.getReason(), reminder.getReminderDate(), reminder.getCategoryId(), reminder.isDone());
         return "redirect:reminders";
     }
 
@@ -69,6 +81,13 @@ public class ReminderController {
         model.addAttribute("reminder", new Reminder()); // Create a new Reminder object and add it to the model
         return "newReminder";
     }
+
+    @DeleteMapping("/delete-reminder/{id}")
+    public String deleteRem(@PathVariable int id) {
+        reminderRepository.deleteReminderByReminderId(id);
+        return "redirect:/reminders";
+    }
+
 
     // Helper method to get the logged-in username
     private static String getLoggedInUsername(ModelMap model) {

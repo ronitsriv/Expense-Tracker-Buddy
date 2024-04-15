@@ -20,6 +20,12 @@
             <form:errors path="amount" cssClass="text-warning"/>
         </fieldset>
 
+        <fieldset class="mb-3">
+            <form:label path="categoryId">Category ID</form:label>
+            <form:input type="text" path="categoryId" required="required" class="form-control"/>
+            <form:errors path="categoryId" cssClass="text-warning"/>
+        </fieldset>
+
         <input type="submit" class="btn btn-success" value="Add Reminder"/>
     </form:form>
 </div>

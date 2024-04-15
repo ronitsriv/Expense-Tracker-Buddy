@@ -15,9 +15,11 @@ public class Reminder {
     private int amount;
     private String reason;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "categoryId")
-    private Category category; // Many-to-One relationship with Category
+    private int categoryId;
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "categoryId")
+//    private Category category; // Many-to-One relationship with Category
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reminderDate;
     private String username;
@@ -37,24 +39,35 @@ public class Reminder {
 
 
 
-    public Reminder(int reminderId, String username, int amount, String reason, LocalDate reminderDate,
-                    Category category
+    public Reminder(
+//            int reminderId,
+            String username, int amount, String reason, LocalDate reminderDate,
+                    int categoryId
             , boolean done) {
-        this.reminderId = reminderId;
+//        this.reminderId = reminderId
         this.username = username;
         this.amount = amount;
         this.reason = reason;
         this.reminderDate = reminderDate;
-        this.category = category; // Set the category
+        this.categoryId = categoryId; // Set the category
         this.done = done;
     }
 
-    public Category getCategory() {
-        return category;
+//    public int getCategory() {
+//        return categoryId;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.categoryId = categoryId;
+//    }
+
+
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getReminderId() {

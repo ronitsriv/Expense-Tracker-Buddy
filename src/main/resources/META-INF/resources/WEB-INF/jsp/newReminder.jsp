@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="container">
     <h1>Enter reminder details</h1>
-    <form:form method="post" modelAttribute="reminder">
+    <form:form method="post" modelAttribute="row">
         <fieldset class="mb-3">
             <form:label path="reason">Reason</form:label>
             <form:input type="text" path="reason" required="required" class="form-control"/>

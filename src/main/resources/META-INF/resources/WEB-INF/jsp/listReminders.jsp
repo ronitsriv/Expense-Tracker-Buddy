@@ -9,8 +9,9 @@
         <tr>
             <th>Reason</th>
             <th>Is done?</th>
+            <th>Amount</th>
             <th>Due Date</th>
-<%--            <th>Delete</th>--%>
+            <th>Delete</th>
             <th>Update</th>
         </tr>
         </thead>
@@ -19,9 +20,9 @@
             <tr>
                 <td>${reminder.reason}</td>
                 <td>${reminder.done}</td>
+                <td>${reminder.amount}</td>
                 <td>${reminder.reminderDate}</td>
-<%--                <td><a href="delete-reminder?id=${reminder.reminderId}" class="btn btn-warning">Delete</a></td>--%>
-                <td><a href="delete-reminder/${reminder.reminderId}" class="btn btn-warning">Delete</a></td>
+                <td><a href="delete-reminder?id=${reminder.reminderId}" class ="btn btn-warning">Delete</a></td>
                 <td><a href="update-reminder?id=${reminder.reminderId}" class="btn btn-success">Update</a></td>
             </tr>
         </c:forEach>

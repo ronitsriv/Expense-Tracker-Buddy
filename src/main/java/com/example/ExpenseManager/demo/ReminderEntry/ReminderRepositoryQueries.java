@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public interface ReminderRepositoryQueries extends CrudRepository<Reminder, Integer> {
 
-    @Query("SELECT MIN(r.amount) FROM Reminder r WHERE r.username = :username")
+    @Query("SELECT MIN(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
     Integer findMinExpenseByUsername(String username);
 
-    @Query("SELECT MAX(r.amount) FROM Reminder r WHERE r.username = :username")
+    @Query("SELECT MAX(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
     Integer findMaxExpenseByUsername(String username);
 
     List<Reminder> findByUsername(String username);

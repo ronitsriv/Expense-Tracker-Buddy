@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @SessionAttributes("name")
@@ -78,7 +79,7 @@ public class ReminderController {
     // Mapping to show the new reminder form
     @RequestMapping(value = "add-reminder", method = RequestMethod.GET)
     public String showNewReminderForm(ModelMap model) {
-        model.addAttribute("reminder", new Reminder()); // Create a new Reminder object and add it to the model
+        model.addAttribute("row", new Reminder()); // Create a new Reminder object and add it to the model
         return "newReminder";
     }
 
@@ -88,10 +89,35 @@ public class ReminderController {
 //        return "redirect:reminders";
 //    }
 
-    @DeleteMapping("/delete-reminder/{id}")
-    public String deleteReminder(@PathVariable int id) {
+//    @DeleteMapping("/delete-reminder/{id}")
+//    public String deleteReminder(@PathVariable int id) {
+//        reminderRepository.deleteById(id);
+//        return "redirect:/reminders";
+//    }
+    @RequestMapping("delete-reminder")
+    public String deleteTodo(@RequestParam int id){
         reminderRepository.deleteById(id);
-        return "redirect:/reminders";
+        return "redirect:reminders";
+    }
+
+    @RequestMapping(value = "update-reminder", method = RequestMethod.GET)
+    public String showUpdateTodo(@RequestParam int id, ModelMap model){
+        Optional<Reminder> reminder = reminderRepository.findById(id);
+        model.addAttribute("row", reminder);
+        return "newReminder";
+    }
+
+    @RequestMapping(value="update-reminder", method = RequestMethod.POST)
+    public String updateTodo(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+
+        if(result.hasErrors()) {
+            return "newReminder";
+        }
+
+        String username = "John Doe";
+        reminder.setUsername(username);
+        reminderRepository.save(reminder);
+        return "redirect:reminders";
     }
 
     // Helper method to get the logged-in username

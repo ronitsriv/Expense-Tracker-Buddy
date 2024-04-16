@@ -1,7 +1,9 @@
 package com.example.ExpenseManager.demo.ReminderEntry;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +18,10 @@ public interface ReminderRepositoryQueries extends CrudRepository<Reminder, Inte
     Integer findMaxExpenseByUsername(String username);
 
     List<Reminder> findByUsername(String username);
+//    @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
+//    void deleteReminderByReminderId(int id);
+
+    @Modifying
     @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
-    void deleteReminderByReminderId(int id);
+    void deleteReminderByReminderId(@Param("id") int id);
 }

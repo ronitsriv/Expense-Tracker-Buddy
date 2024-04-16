@@ -82,12 +82,17 @@ public class ReminderController {
         return "newReminder";
     }
 
+//    @RequestMapping("delete-reminder")
+//    public String deleteRem(@RequestParam int id) {
+//        reminderRepository.deleteReminderByReminderId(id);
+//        return "redirect:reminders";
+//    }
+
     @DeleteMapping("/delete-reminder/{id}")
-    public String deleteRem(@PathVariable int id) {
-        reminderRepository.deleteReminderByReminderId(id);
+    public String deleteReminder(@PathVariable int id) {
+        reminderRepository.deleteById(id);
         return "redirect:/reminders";
     }
-
 
     // Helper method to get the logged-in username
     private static String getLoggedInUsername(ModelMap model) {

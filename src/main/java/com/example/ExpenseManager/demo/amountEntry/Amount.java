@@ -14,19 +14,29 @@ public class Amount {
     String reason;
     int amount;
     Date entryDate;
+    String username;
 
     @ManyToOne
     @JoinColumn(name = "categoryId") // Name of the foreign key column in Amount table
     public Category category; // This should be of type Category
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Amount(int amountId, String reason, int amount, Date entryDate
-                  , Category category
+                  , Category category, String username
                   ) {
         this.amountId = amountId;
         this.reason = reason;
         this.amount = amount;
         this.entryDate = entryDate;
         this.category = category;
+        this.username = username;
     }
 
     public Amount() {
@@ -77,4 +87,3 @@ public class Amount {
 
 
 }
-//sahim here

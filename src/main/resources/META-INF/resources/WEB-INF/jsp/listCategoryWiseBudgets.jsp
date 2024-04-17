@@ -19,9 +19,9 @@
         <c:forEach var="categoryWise" items="${row}">
             <tr>
                 <td>${categoryWise.reason}</td>
-                <td>${category.done}</td>
-                <td>${category.amount}</td>
-                <td>${category.categoryDate}</td>
+                <td>${categoryWise.done}</td>
+                <td>${categoryWise.amount}</td>
+                <td>${categoryWise.categoryDate}</td>
                 <td><a href="delete-category?id=${category.categoryId}" class ="btn btn-warning">Delete</a></td>
                 <td><a href="update-category?id=${category.categoryId}" class="btn btn-success">Update</a></td>
             </tr>

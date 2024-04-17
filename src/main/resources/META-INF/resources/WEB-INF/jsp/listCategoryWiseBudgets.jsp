@@ -16,9 +16,9 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="category" items="${row}">
+        <c:forEach var="categoryWise" items="${row}">
             <tr>
-                <td>${category.reason}</td>
+                <td>${categoryWise.reason}</td>
                 <td>${category.done}</td>
                 <td>${category.amount}</td>
                 <td>${category.categoryDate}</td>

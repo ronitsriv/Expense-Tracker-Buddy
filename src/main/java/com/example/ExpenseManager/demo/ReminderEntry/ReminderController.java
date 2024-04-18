@@ -107,19 +107,36 @@ public class ReminderController {
         return "newReminder";
     }
 
-    @RequestMapping(value="update-reminder", method = RequestMethod.POST)
-    public String updateTodo(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+//    @RequestMapping(value="update-reminder", method = RequestMethod.POST)
+//    public String updateTodo(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+//        if(result.hasErrors()){
+//            return "newReminder";
+//        }
+//        String username = (String)model.get("name");
+//        reminder.setUsername(username);
+//        reminderService.updateReminder(reminder);
+//        return "redirect:reminders";
+//    }
 
-        if(result.hasErrors()) {
-            return "newReminder";
+//    public void updateReminder(Reminder updatedReminder) {
+//        Reminder existingReminder = reminderRepository.findById(updatedReminder.getReminderId()).orElse(null);
+//        if (existingReminder != null) {
+//            // Delete the existing reminder
+//            reminderRepository.deleteById(existingReminder.getReminderId());
+//            // Add the updated reminder
+//            addNewReminder(updatedReminder.getAmount(), updatedReminder.getReason(),
+//                    updatedReminder.getReminderDate(), updatedReminder.getCategoryId(),
+//                    updatedReminder.isDone());
+//        }
+//    }
+        @RequestMapping(value = "update-reminder", method = RequestMethod.POST)
+        public String updateReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+            if (result.hasErrors()) {
+                return "newReminder";
+            }
+            reminderService.updateReminder(reminder);
+            return "redirect:reminders";
         }
-
-        String username = "John Doe";
-        reminder.setUsername(username);
-        reminderRepository.save(reminder);
-        return "redirect:reminders";
-    }
-
     // Helper method to get the logged-in username
     private static String getLoggedInUsername(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

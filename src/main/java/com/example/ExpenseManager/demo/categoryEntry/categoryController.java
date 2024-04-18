@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -57,5 +58,18 @@ public class categoryController {
      model.addAttribute("category", new Category()); // Create a new category object and add it to the model
      return "newCategory";
  }
+
+    @RequestMapping(value = "delete-category", method = RequestMethod.POST)
+    public String deleteCategory(@RequestParam int id, ModelMap model) {
+        if (categoryService.hasDependencies(id)) {
+            model.addAttribute("warningMessage", "Cannot delete category because it is associated with existing reminders or amounts.");
+            return "categoryList"; // Return to the category list page with a warning message
+        } else {
+            // Proceed with deleting the category
+            categoryRepositoryQueries.deleteById(id);
+            return "redirect:categoryList"; // Redirect to the category list page
+        }
+    }
+
 
 }

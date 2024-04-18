@@ -22,16 +22,16 @@ public class ReminderService {
     @Autowired
     public ReminderService(ReminderRepositoryQueries reminderRepositoryQueries) {
         this.reminderRepositoryQueries = reminderRepositoryQueries;
-        LocalDate currentDate = LocalDate.now();
-
-        // Create a dummy category
-        Category dummyCategory1 = new Category("Leisure", "john");
-        Category dummyCategory2 = new Category("Necessary", "john");
-
-        // Initialize the list of reminders statically
-        reminders.add(new Reminder("john", 200, "Movie Ticket", currentDate, dummyCategory1.getCategoryId(), true));
-        reminders.add(new Reminder("john", 153, "Ice cream", currentDate, dummyCategory1.getCategoryId(), false));
-        reminders.add(new Reminder("john", 21, "Stationery", currentDate, dummyCategory2.getCategoryId(), true));
+//        LocalDate currentDate = LocalDate.now();
+//
+//        // Create a dummy category
+//        Category dummyCategory1 = new Category("Leisure", "john");
+//        Category dummyCategory2 = new Category("Necessary", "john");
+//
+//        // Initialize the list of reminders statically
+//        reminders.add(new Reminder("john", 200, "Movie Ticket", currentDate, dummyCategory1.getCategoryId(), true));
+//        reminders.add(new Reminder("john", 153, "Ice cream", currentDate, dummyCategory1.getCategoryId(), false));
+//        reminders.add(new Reminder("john", 21, "Stationery", currentDate, dummyCategory2.getCategoryId(), true));
     }
 
 //    public List<Reminder> findByUsername(String username){
@@ -69,8 +69,8 @@ public class ReminderService {
     }
 
     public void updateReminder(Reminder reminder){
-        deleteReminder(reminder.getReminderId());
-        reminders.add(reminder);
+        reminderRepositoryQueries.save(reminder);
+//        addReminder("John Doe", reminder.getAmount(), reminder.getReason(), reminder.getReminderDate(), reminder.getCategoryId(), reminder.isDone());
     }
 
     public int findMaxExpenseByUsername(String username) {
@@ -82,4 +82,5 @@ public class ReminderService {
         Integer minExpense = reminderRepositoryQueries.findMinExpenseByUsername(username);
         return minExpense != null ? minExpense : 0;
     }
+
 }

@@ -25,5 +25,7 @@ public interface AmountRepositoryQueries extends CrudRepository<Reminder, Intege
 //    @Modifying
 //    @Query("DELETE FROM Amount r WHERE r.reminderId = :id")
 //    void deleteReminderByReminderId(@Param("id") int id);
+
+    boolean existsByCategoryId(int categoryId);
 }
 

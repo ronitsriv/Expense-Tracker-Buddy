@@ -18,9 +18,13 @@ public class Category {
     
 
     public Category(String categoryName, String username) {
-        this.categoryName = categoryName;
         this.username = username;
+        this.categoryName = categoryName;
     }
+
+
+
+
 
     public int getCategoryId() {
         return categoryId;

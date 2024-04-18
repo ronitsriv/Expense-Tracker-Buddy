@@ -3,31 +3,31 @@
 <%@ include file="common/navigation.jspf" %>
 
 <div class="container">
-    <h1>Your reminders are</h1>
+    <h1>Budget Details</Details></h1>
     <table class="table">
         <thead>
         <tr>
-            <th>Reason</th>
-            <th>Is done?</th>
-            <th>Amount</th>
-            <th>Due Date</th>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Budget</th>
+            <th>Edit</th>
             <th>Delete</th>
-            <th>Update</th>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="categoryWise" items="${row}">
-            <tr>
-                <td>${categoryWise.reason}</td>
-                <td>${categoryWise.done}</td>
-                <td>${categoryWise.amount}</td>
-                <td>${categoryWise.categoryDate}</td>
-                <td><a href="delete-category?id=${category.categoryId}" class ="btn btn-warning">Delete</a></td>
-                <td><a href="update-category?id=${category.categoryId}" class="btn btn-success">Update</a></td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <a href="add-category" class="btn btn-success">Add Category</a>
+    </tr>
+</thead>
+<tbody>
+<c:forEach var="reminder" items="${row}">
+    <tr>
+        <td>${reminder.reason}</td>
+        <td>${reminder.done}</td>
+        <td>${reminder.amount}</td>
+        <td>${reminder.reminderDate}</td>
+        <td><a href="delete-reminder?id=${reminder.reminderId}" class ="btn btn-warning">Delete</a></td>
+        <td><a href="update-reminder?id=${reminder.reminderId}" class="btn btn-success">Update</a></td>
+    </tr>
+</c:forEach>
+</tbody>
+</table>
+<a href="add-reminder" class="btn btn-success">Add Reminder</a>
 </div>
 <%@ include file="common/footer.jspf" %>

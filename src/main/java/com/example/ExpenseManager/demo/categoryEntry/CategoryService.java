@@ -1,7 +1,5 @@
 package com.example.ExpenseManager.demo.categoryEntry;
 
-import com.example.ExpenseManager.demo.ReminderEntry.ReminderRepositoryQueries;
-import com.example.ExpenseManager.demo.amountEntry.AmountRepositoryQueries;
 import com.example.ExpenseManager.demo.categoryEntry.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,21 +14,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
-    private final ReminderRepositoryQueries reminderRepositoryQueries;
-    private final AmountRepositoryQueries amountRepositoryQueries;
-
-    //    private final AmountRepositoryQueries amountRepositoryQueries;
     public List<Category> reminders = new ArrayList<>();
     private int categoryCount = 0;
 
     private final CategoryRepositoryQueries categoryRepositoryQueries;
-    
-    
+
     @Autowired
-    public CategoryService(CategoryRepositoryQueries categoryRepositoryQueries, ReminderRepositoryQueries reminderRepositoryQueries, AmountRepositoryQueries amountRepositoryQueries) {
+    public CategoryService(CategoryRepositoryQueries categoryRepositoryQueries) {
         this.categoryRepositoryQueries = categoryRepositoryQueries;
-        this.reminderRepositoryQueries = reminderRepositoryQueries;
-        this.amountRepositoryQueries = amountRepositoryQueries;
         LocalDate currentDate = LocalDate.now();
 
         // // Create a dummy category
@@ -69,14 +60,8 @@ public class CategoryService {
         Category category = new Category(categoryName, username);
         categoryRepositoryQueries.save(category);
     }
-
-    public boolean hasDependencies(int categoryId) {
-        // Check if any reminders or amounts are associated with the given categoryId
-        boolean remindersExist = reminderRepositoryQueries.existsByCategoryId(categoryId);
-        boolean amountsExist = amountRepositoryQueries.existsByCategoryId(categoryId);
-        return remindersExist || amountsExist;
-    }
-
+    
+    
 
 
 

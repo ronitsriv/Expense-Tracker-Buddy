@@ -1,6 +1,5 @@
 package com.example.ExpenseManager.demo.categoryWiseBudgetEntry;
 
-
 import com.example.ExpenseManager.demo.categoryEntry.Category;
 import jakarta.persistence.*;
 
@@ -28,7 +27,6 @@ public class CategoryWiseBudget {
         this.username = username;
     }
 
-
     public int getCatWiseid() {
         return catWiseid;
     }
@@ -52,9 +50,11 @@ public class CategoryWiseBudget {
     public void setCategory(Category category) {
         this.category = category;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }

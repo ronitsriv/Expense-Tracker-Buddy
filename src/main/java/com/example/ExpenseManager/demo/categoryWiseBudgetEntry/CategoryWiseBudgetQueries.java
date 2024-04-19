@@ -11,7 +11,7 @@ import com.example.ExpenseManager.demo.categoryEntry.Category;
 import java.util.List;
 
 @Repository
-public interface CategoryWiseBudgetQueries extends CrudRepository<Category, Integer> {
+public interface CategoryWiseBudgetQueries extends CrudRepository<CategoryWiseBudget, Integer> {
 
     @Query("SELECT MIN(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
     Integer findMinExpenseByUsername(String username);

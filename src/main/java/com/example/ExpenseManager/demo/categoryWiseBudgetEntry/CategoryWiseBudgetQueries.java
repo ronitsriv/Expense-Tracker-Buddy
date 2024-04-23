@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
+//import com.example.ExpenseManager.demo.categoryEntry.Category;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public interface CategoryWiseBudgetQueries extends CrudRepository<CategoryWiseBu
     @Query("SELECT MAX(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
     Integer findMaxExpenseByUsername(String username);
 
-    List<Category> findByUsername(String username);
+    List<CategoryWiseBudget> findByUsername(String username);
 //    @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
 //    void deleteReminderByReminderId(int id);
 

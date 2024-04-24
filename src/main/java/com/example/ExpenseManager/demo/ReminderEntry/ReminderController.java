@@ -8,10 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -48,23 +51,109 @@ public class ReminderController {
     }
 
 
+//    @GetMapping("insights")
+//    public String insights(ModelMap model) {
+//        String username = getLoggedInUsername(model);
+//        int maxExpense = reminderService.findMaxExpenseByUsername(username);
+//        int minExpense = reminderService.findMinExpenseByUsername(username);
+//        Map<Integer, Integer> categoryExpenses = reminderRepository.sumOfEachCategory("John Doe");
+//
+//        model.addAttribute("maxExpense", maxExpense);
+//        model.addAttribute("minExpense", minExpense);
+//        model.addAttribute("categoryExpenses", categoryExpenses);
+//
+//        return "insightsPage";
+//    }
+
     @GetMapping("insights")
     public String insights(ModelMap model) {
         String username = getLoggedInUsername(model);
-        int maxExpense = reminderService.findMaxExpenseByUsername("JohnDoe");
-        int minExpense = reminderService.findMinExpenseByUsername("JohnDoe");
+        int maxExpense = reminderService.findMaxExpenseByUsername(username);
+        int minExpense = reminderService.findMinExpenseByUsername(username);
+
+        // Retrieve the list of unique category IDs associated with the user
+        List<Integer> categoryIds = reminderRepository.findDistinctCategoryIdsByUsername(username);
+
+        // Calculate the sum of amounts for each category
+        Map<Integer, Integer> categoryExpenses = new HashMap<>();
+        for (Integer categoryId : categoryIds) {
+            int sum = reminderRepository.sumAmountByCategoryIdAndUsername(categoryId, username);
+            categoryExpenses.put(categoryId, sum);
+        }
+
         model.addAttribute("maxExpense", maxExpense);
         model.addAttribute("minExpense", minExpense);
+        model.addAttribute("categoryExpenses", categoryExpenses);
+
+        // Log the data for debugging
+        System.out.println("Max Expense: " + maxExpense);
+        System.out.println("Min Expense: " + minExpense);
+        System.out.println("Category Expenses: " + categoryExpenses);
+
         return "insightsPage";
     }
 
+
+
+
     // Mapping to add a new reminder
     // In your controller
+//    @RequestMapping(value="add-reminder", method = RequestMethod.POST)
+//    public String addNewReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "newReminder";
+//        }
+//        reminderService.addReminder(reminder.getAmount(), reminder.getReason(), reminder.getReminderDate(), reminder.getCategoryId(), reminder.isDone());
+//        return "redirect:reminders";
+//    }
+
+//    @RequestMapping(value="add-reminder", method = RequestMethod.POST)
+//    public String addNewReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "newReminder";
+//        }
+//
+//        // Check if the category ID exists in the category table
+//        int categoryId = reminder.getCategoryId();
+//        boolean categoryExists = reminderRepository.existsByCategoryId(categoryId);
+//
+//        // If the category doesn't exist, add a warning message to the BindingResult
+//        if (!categoryExists) {
+//            result.addError(new FieldError("reminder", "categoryId", "Category ID does not exist"));
+//            return "newReminder";
+//        }
+//
+//        // If the category exists, proceed with adding the reminder
+//        reminderService.addReminder(reminder.getAmount(), reminder.getReason(), reminder.getReminderDate(), reminder.getCategoryId(), reminder.isDone());
+//        return "redirect:reminders";
+//    }
+
+
     @RequestMapping(value="add-reminder", method = RequestMethod.POST)
     public String addNewReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
         if (result.hasErrors()) {
             return "newReminder";
         }
+
+        // Check if the category ID exists in the category table
+        int categoryId = reminder.getCategoryId();
+        boolean categoryExists;
+
+        try {
+            categoryExists = reminderRepository.existsByCategoryId(categoryId);
+        } catch (Exception e) {
+            // Catch any exception and add a custom error message to the BindingResult
+            result.addError(new FieldError("reminder", "categoryId", "An error occurred while checking category ID"));
+            return "newReminder";
+        }
+
+        // If the category doesn't exist, add a warning message to the BindingResult
+        if (!categoryExists) {
+            result.addError(new FieldError("reminder", "categoryId", "Category ID does not exist"));
+            return "newReminder";
+        }
+
+        // If the category exists, proceed with adding the reminder
         reminderService.addReminder(reminder.getAmount(), reminder.getReason(), reminder.getReminderDate(), reminder.getCategoryId(), reminder.isDone());
         return "redirect:reminders";
     }
@@ -130,12 +219,12 @@ public class ReminderController {
 //        }
 //    }
         @RequestMapping(value = "update-reminder", method = RequestMethod.POST)
-        public String updateReminder(ModelMap model, @Valid Reminder reminder, BindingResult result) {
+        public String updateReminder(@Valid Reminder reminder, BindingResult result) {
             if (result.hasErrors()) {
                 return "newReminder";
             }
-            reminderService.updateReminder(reminder);
-            return "redirect:reminders";
+            reminderRepository.save(reminder);
+            return "redirect:/reminders";
         }
     // Helper method to get the logged-in username
     private static String getLoggedInUsername(ModelMap model) {

@@ -16,6 +16,9 @@ public class Amount {
     Date entryDate;
     String username;
 
+//    @Column(name = "category_id") // Ensure this column matches your database schema
+//    private int categoryId;
+
     @ManyToOne
     @JoinColumn(name = "categoryId") // Name of the foreign key column in Amount table
     public Category category; // This should be of type Category

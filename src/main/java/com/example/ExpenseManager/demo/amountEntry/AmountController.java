@@ -1,6 +1,6 @@
 package com.example.ExpenseManager.demo.amountEntry;
 
-import com.example.ExpenseManager.demo.ReminderEntry.Reminder;
+import com.example.ExpenseManager.demo.amountEntry.Amount;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,9 +27,9 @@ public class AmountController {
 
     @GetMapping("amounts")
     public String listAllAmounts(ModelMap model) {
-        // String username = "John Doe";
-        // List<Amount> amounts = amountService.findByUsername(username);
-        // model.addAttribute("amounts", amounts); // Corrected the attribute name
+         String username = "John Doe";
+         List<Amount> amounts = amountService.findByUsername(username);
+         model.addAttribute("amounts", amounts); // Corrected the attribute name
         return "listAmounts";
     }
 

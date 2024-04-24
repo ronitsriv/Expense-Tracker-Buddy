@@ -14,7 +14,7 @@ public class Reminder {
     private int reminderId;
     private int amount;
     private String reason;
-
+    @Column(name = "category_id")
     private int categoryId;
 
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

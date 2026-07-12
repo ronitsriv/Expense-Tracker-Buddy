@@ -1,6 +1,5 @@
-package com.example.ExpenseManager.demo.ReminderEntry;
+package com.example.ExpenseManager.demo.ReminderService;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

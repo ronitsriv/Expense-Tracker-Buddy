@@ -1,7 +1,7 @@
-package com.example.ExpenseManager.demo.amountEntry;
+package com.example.ExpenseManager.demo.amountService;
 
 import jakarta.persistence.*;
-import com.example.ExpenseManager.demo.categoryEntry.Category;
+import com.example.ExpenseManager.demo.categoryService.Category;
 
 
 import java.util.Date;

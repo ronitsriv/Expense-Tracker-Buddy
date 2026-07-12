@@ -7,6 +7,7 @@
     <table class="table">
         <thead>
         <tr>
+
             <th>Reason</th>
             <th>Is done?</th>
             <th>Amount</th>

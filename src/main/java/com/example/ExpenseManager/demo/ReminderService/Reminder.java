@@ -1,11 +1,9 @@
-package com.example.ExpenseManager.demo.ReminderEntry;
+package com.example.ExpenseManager.demo.ReminderService;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Reminder {

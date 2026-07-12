@@ -1,8 +1,5 @@
-package com.example.ExpenseManager.demo.amountEntry;
+package com.example.ExpenseManager.demo.amountService;
 
-import com.example.ExpenseManager.demo.amountEntry.AmountRepositoryQueries;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AmountService {

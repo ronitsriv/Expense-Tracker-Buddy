@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.categoryWiseBudgetEntry;
+package com.example.ExpenseManager.demo.categoryWiseBudgetService;
 
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;

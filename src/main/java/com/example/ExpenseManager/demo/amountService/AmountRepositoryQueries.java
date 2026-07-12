@@ -1,10 +1,8 @@
-package com.example.ExpenseManager.demo.amountEntry;
+package com.example.ExpenseManager.demo.amountService;
 
-import com.example.ExpenseManager.demo.ReminderEntry.Reminder;
-import org.springframework.data.jpa.repository.Modifying;
+import com.example.ExpenseManager.demo.ReminderService.Reminder;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

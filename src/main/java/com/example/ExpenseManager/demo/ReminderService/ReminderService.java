@@ -1,15 +1,12 @@
-package com.example.ExpenseManager.demo.ReminderEntry;
+package com.example.ExpenseManager.demo.ReminderService;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //hello
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 //import jakarta.validation.Valid;
 
 @Service

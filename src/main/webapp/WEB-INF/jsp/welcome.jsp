@@ -3,6 +3,6 @@
 
 <div class = "container">
             <h1>Welcome</h1>
-            <a href = "reminders">Manage</a> your reminders
+            <a href = "reminders">Manage</a> your budget
         </div>
 <%--<%@ include file="common/footer.jspf" %>--%>

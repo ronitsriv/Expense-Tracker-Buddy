@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.categoryEntry;
+package com.example.ExpenseManager.demo.categoryService;
 
 import java.util.Optional;
 

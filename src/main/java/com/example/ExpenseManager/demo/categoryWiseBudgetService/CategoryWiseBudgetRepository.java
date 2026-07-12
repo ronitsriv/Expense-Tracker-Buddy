@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.categoryWiseBudgetEntry;
+package com.example.ExpenseManager.demo.categoryWiseBudgetService;
 
 import java.util.List;
 

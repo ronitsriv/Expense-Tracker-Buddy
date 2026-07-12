@@ -1,6 +1,5 @@
-package com.example.ExpenseManager.demo.amountEntry;
+package com.example.ExpenseManager.demo.amountService;
 
-import com.example.ExpenseManager.demo.amountEntry.Amount;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 public class AmountController {
     private final AmountService amountService;

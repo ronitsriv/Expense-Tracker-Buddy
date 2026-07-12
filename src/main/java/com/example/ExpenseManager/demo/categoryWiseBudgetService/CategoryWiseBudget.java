@@ -1,6 +1,6 @@
-package com.example.ExpenseManager.demo.categoryWiseBudgetEntry;
+package com.example.ExpenseManager.demo.categoryWiseBudgetService;
 
-import com.example.ExpenseManager.demo.categoryEntry.Category;
+import com.example.ExpenseManager.demo.categoryService.Category;
 
 import jakarta.persistence.*;
 

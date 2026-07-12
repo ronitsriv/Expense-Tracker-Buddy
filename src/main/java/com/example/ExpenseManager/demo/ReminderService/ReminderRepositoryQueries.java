@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.ReminderEntry;
+package com.example.ExpenseManager.demo.ReminderService;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

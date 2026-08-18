@@ -15,5 +15,5 @@ INSERT INTO amount (amount_id, amount, entry_date, reason, username, category_id
 INSERT INTO amount (amount_id, amount, entry_date, reason, username, category_id) VALUES (4, 25, CURRENT_DATE(), 'B Bill', 'John Doe', 2);
 
 -- Insert data into the category_wise_budget table
-INSERT INTO category_wise_budget (cat_wiseid, budget, username, category_id) VALUES (1, 500, 'John Doe', 1);
+--INSERT INTO category_wise_budget (cat_wiseid, budget, username, category_id) VALUES (1, 500, 'John Doe', 1);
 -- INSERT INTO category_wise_budget (cat_wiseid, budget, username, category_id) VALUES (1, 300, 'John Doe', 2);

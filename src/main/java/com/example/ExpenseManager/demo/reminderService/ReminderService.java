@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.ReminderService;
+package com.example.ExpenseManager.demo.reminderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

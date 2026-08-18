@@ -12,17 +12,17 @@ import java.util.List;
 @Repository
 public interface CategoryRepositoryQueries extends CrudRepository<Category, Integer> {
 
-    @Query("SELECT MIN(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
-    Integer findMinExpenseByUsername(String username);
-
-    @Query("SELECT MAX(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
-    Integer findMaxExpenseByUsername(String username);
+//    @Query("SELECT MIN(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
+//    Integer findMinExpenseByUsername(String username);
+//
+//    @Query("SELECT MAX(r.amount) FROM Reminder r WHERE r.username = 'John Doe'")
+//    Integer findMaxExpenseByUsername(String username);
 
     List<Category> findByUsername(String username);
 //    @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
 //    void deleteReminderByReminderId(int id);
 
-    @Modifying
-    @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
-    void deleteReminderByReminderId(@Param("id") int id);
+//    @Modifying
+//    @Query("DELETE FROM Reminder r WHERE r.reminderId = :id")
+//    void deleteReminderByReminderId(@Param("id") int id);
 }

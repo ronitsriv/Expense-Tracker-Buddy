@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.ReminderService;
+package com.example.ExpenseManager.demo.reminderService;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;

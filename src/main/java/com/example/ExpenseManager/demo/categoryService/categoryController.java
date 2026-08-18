@@ -45,14 +45,36 @@ public class categoryController {
  }
  
 
- @RequestMapping(value = "add-category", method = RequestMethod.POST)
-public String addNewCategory(ModelMap model, @Valid Category category, BindingResult result) {
-    if (result.hasErrors()) {
-        return "newCategory"; // Return the new category form if there are validation errors
+// @RequestMapping(value = "add-category", method = RequestMethod.POST)
+//public String addNewCategory(ModelMap model, @Valid Category category, BindingResult result) {
+//    if (result.hasErrors()) {
+//        return "newCategory"; // Return the new category form if there are validation errors
+//    }
+//    categoryService.addCategory(category.getCategoryName(), category.getUsername());
+//    return "redirect:categories"; // Redirect to the categories page after adding the category
+//}
+
+    @RequestMapping(value = "add-category", method = RequestMethod.POST)
+    public String addNewCategory(
+            ModelMap model,
+            @Valid Category category,
+            BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "newCategory";
+        }
+
+        String username = "John Doe";
+
+        category.setUsername(username);
+
+        categoryService.addCategory(
+                category.getCategoryName(),
+                category.getUsername()
+        );
+
+        return "redirect:categories";
     }
-    categoryService.addCategory(category.getCategoryName(), category.getUsername());
-    return "redirect:categories"; // Redirect to the categories page after adding the category
-}
 
  
 

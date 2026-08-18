@@ -1,4 +1,4 @@
-package com.example.ExpenseManager.demo.ReminderService;
+package com.example.ExpenseManager.demo.reminderService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
